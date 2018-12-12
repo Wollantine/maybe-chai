@@ -6,7 +6,11 @@
   "repository": "kwirke/maybe-chai",
   "author": "Kwirke",
   "license": "MIT",
-  "keywords": ["chai", "maybe", "monad"],
+  "keywords": [
+    "chai",
+    "maybe",
+    "monad"
+  ],
   "main": "index.js",
   "jsnext:main": "index.es.js",
   "babel": {
@@ -33,7 +37,7 @@
     "@babel/register": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "chai": "^4.2.0",
-    "coveralls": "^2.11.14",
+    "coveralls": "^3.0.2",
     "del": "^2.2.2",
     "easystatic": "^0.1.12",
     "eslint": "^5.9.0",
