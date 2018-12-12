@@ -57,11 +57,14 @@
     "lint": "eslint src test tools",
     "test": "mocha --require @babel/register",
     "test:watch": "mocha --require @babel/register --reporter min --watch",
-    "test:cover": "nyc npm test",
+    "test:cover": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "build": "node tools/build",
     "prepublish": "npm run build",
     "publish:docs": "easystatic deploy docs --repo kriasoft/babel-starter-kit",
     "start": "easystatic start docs"
+  },
+  "engines": {
+    "node": ">=8.14.0"
   }
 }
