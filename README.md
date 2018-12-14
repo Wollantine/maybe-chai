@@ -45,16 +45,30 @@ You can [check the list of adapters here](./adapters.md).
 
 
 ## Usage
-Example:
+
+### `just`
+Asserts that the target is an instance of **Maybe.Just** by using provided `match` function.
 
 ```javascript
-expect( Maybe.just(5) ).to.be.just()        // OK!
+expect( Maybe.just(5) ).to.be.a.just()      // OK!
 expect( Maybe.just(5) ).to.be.just(5)       // OK!
 expect( Maybe.nothing() ).to.be.just(5)     // fails
 expect( Maybe.nothing() ).to.not.be.just(5) // OK!
 expect( 'string' ).to.be.just(5)            // fails
 expect( 'string' ).to.not.be.just(5)        // OK!
+```
 
+`.just` changes the target of any assertions that follow in the chain to be the value inside the original Just object.
+
+```javascript
+expect( Maybe.just( { status: 200 } ) ).to.be.a.just()
+    .and.to.have.property( 'status', 200 ) // OK
+```
+
+### `nothing`
+Asserts that the target is an instance of **Maybe.Nothing** by using provided `match` function.
+
+```javascript
 expect( Maybe.nothing() ).to.be.nothing()   // OK!
 expect( Maybe.just(5) ).to.be.nothing()     // fails
 expect( Maybe.just(5) ).to.not.be.nothing() // OK!
@@ -64,7 +78,7 @@ expect( 'string' ).to.not.be.nothing()      // OK!
 
 ## Supported libs
 Although the library allows you to provide an adapter to any library,
-the aim of the library is to provide a recipe here for each of the
+the aim of the library is to provide a recipe [here](./adapters.md) for each of the
 most popular monad libraries in Javascript:
 
 - [x] True Myth
@@ -75,3 +89,5 @@ most popular monad libraries in Javascript:
 - [ ] Crocks
 - [ ] KudoJS
 - [ ] Purify
+
+If yours is not here, you are welcome to issue a request, and PRs will be appreciated!

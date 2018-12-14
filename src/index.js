@@ -46,11 +46,20 @@ function maybeChai( { match, isMaybe } = trueMythAdapter ) {
             const obj = this._obj
             const isAMaybe = tryCheckOrFalse( isMaybe, obj )
 
+            const assertionResult = isAMaybe && match( obj, {
+                Just: content => value === undefined || content === value,
+                Nothing: () => false,
+            } )
+
+            if (assertionResult) {
+                utils.flag(this, 'object', match( obj, {
+                    Just: content => content,
+                    Nothing: () => undefined,
+                } ) )
+            }
+
             this.assert(
-                isAMaybe && match( obj, {
-                    Just: content => value === undefined || content === value,
-                    Nothing: () => false,
-                } ),
+                assertionResult,
                 `expected ${maybeToString( obj, isAMaybe )} to be Just(${value})`,
                 `expected ${maybeToString( obj, isAMaybe )} to not be Just(${value})`,
                 value === undefined
