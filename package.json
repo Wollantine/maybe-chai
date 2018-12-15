@@ -7,12 +7,15 @@
   "author": "Kwirke",
   "license": "MIT",
   "keywords": [
+    "chai-plugin",
+    "browser",
+    "maybe-chai",
     "chai",
     "maybe",
     "monad"
   ],
-  "main": "index.js",
-  "jsnext:main": "index.es.js",
+  "main": "dist/index.js",
+  "jsnext:main": "dist/index.es.js",
   "babel": {
     "presets": [
       "@babel/preset-env"
@@ -50,6 +53,8 @@
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^3.4.0",
+    "sanctuary": "^0.15.0",
+    "sanctuary-type-identifiers": "^2.0.1",
     "sinon": "^7.1.1",
     "true-myth": "^2.2.3"
   },
