@@ -2,11 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/kwirke/maybe-chai/badge.svg?branch=master)](https://coveralls.io/github/kwirke/maybe-chai?branch=master)
 
 # maybe-chai
-Chai plugin for Maybe monads
-
-Currently only compatible with True Myth.
-
-NOT YET PUBLISHED to NPM
+Chai plugin for Maybe monads. Adaptable to any monad library.
 
 ## Installation
 ```
@@ -22,7 +18,7 @@ chai.use( maybeChai() )
 ```
 
 ## Adapting it to your Maybe library
-Maybe-chai works out of the box for `true-myth` library because reasons.
+Maybe-chai, as a default, works out of the box for `true-myth` library because reasons.
 If you want to use another library, you will need to pass it an adapter (we have [pre-cooked adapters](./adapters.md))
 
 You can configure an adapter by passing an object to `maybeChai()` that follows this signature:
@@ -82,9 +78,9 @@ the aim of the library is to provide a recipe [here](./adapters.md) for each of 
 most popular monad libraries in Javascript:
 
 - [x] True Myth
+- [x] Sanctuary
 - [ ] TSMonad
 - [ ] Folktale
-- [ ] Sanctuary
 - [ ] Monet
 - [ ] Crocks
 - [ ] KudoJS

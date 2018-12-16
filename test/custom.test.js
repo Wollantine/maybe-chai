@@ -1,35 +1,6 @@
 import chai from 'chai'
 import maybeChai from '../src'
 
-const isMaybe = maybe => (
-    maybe.type === 'just' || maybe.type === 'nothing'
-)
-
-const match = maybe => cases => (
-    maybe.type === 'just'
-        ? cases.Just( maybe.value )
-        : cases.Nothing()
-)
-
-/**
- *   Custom Maybe type
- */
-const Maybe = ( value ) => {
-    if ( value === null || value === undefined ) {
-        const self = { type: 'nothing' }
-        self.match = match( self )
-        self.isMaybe = isMaybe( self )
-        return self
-    }
-    const self = { type: 'just', value }
-    self.match = match( self )
-    self.isMaybe = isMaybe( self )
-    return self
-}
-
-const Just = Maybe
-const Nothing = () => Maybe( null )
-
 chai.use( maybeChai( {
     match: ( maybe, cases ) => maybe.match( cases ), // throws if maybe has no match method
     isMaybe: maybe => maybe.isMaybe(), // throws if maybe has no isMaybe method
@@ -44,16 +15,16 @@ describe( 'Custom Adapter', () => {
         it( 'should expect nonMaybe to not be nothing if isMaybe throws', () => {
             expect( nonMaybe ).to.not.be.nothing()
         } )
-    
+
         it( 'should expect nonMaybe to not be just if isMaybe throws', () => {
             expect( nonMaybe ).to.not.be.just()
         } )
-    
+
         it( 'should fail when expecting nonMaybe to be nothing and isMaybe throws', () => {
             const assertion = () => expect( nonMaybe ).to.be.nothing()
             expect( assertion ).to.throw()
         } )
-    
+
         it( 'should fail when expecting nonMaybe to be just and isMaybe throws', () => {
             const assertion = () => expect( nonMaybe ).to.be.just()
             expect( assertion ).to.throw()
@@ -66,16 +37,16 @@ describe( 'Custom Adapter', () => {
         it( 'should expect nonMaybe to not be nothing if match throws', () => {
             expect( nonMaybe ).to.not.be.nothing()
         } )
-    
+
         it( 'should expect nonMaybe to not be just if match throws', () => {
             expect( nonMaybe ).to.not.be.just()
         } )
-    
+
         it( 'should fail when expecting nonMaybe to be nothing and match throws', () => {
             const assertion = () => expect( nonMaybe ).to.be.nothing()
             expect( assertion ).to.throw()
         } )
-    
+
         it( 'should fail when expecting nonMaybe to be just and match throws', () => {
             const assertion = () => expect( nonMaybe ).to.be.just()
             expect( assertion ).to.throw()
