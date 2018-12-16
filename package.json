@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "maybe-chai",
   "version": "1.0.0",
   "description": "Chai plugin for assertions with Maybe monads",
