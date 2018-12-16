@@ -27,9 +27,6 @@
     "parser": "babel-eslint",
     "extends": "airbnb-base"
   },
-  "dependencies": {
-    "@babel/runtime": "^7.0.0"
-  },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
@@ -37,6 +34,7 @@
     "@babel/plugin-transform-runtime": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "@babel/runtime": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",
