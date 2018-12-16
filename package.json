@@ -60,9 +60,10 @@
   },
   "scripts": {
     "lint": "eslint src test tools",
+    "test:custom": "mocha --require @babel/register test/custom.test.js",
     "test:true-myth": "mocha --require @babel/register test/true-myth.test.js",
     "test:sanctuary": "mocha --require @babel/register test/true-myth.test.js",
-    "test": "npm run test:true-myth && npm run test:sanctuary",
+    "test": "npm run test:custom && npm run test:true-myth && npm run test:sanctuary",
     "test:watch": "mocha --require @babel/register --reporter min --watch",
     "test:cover": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
