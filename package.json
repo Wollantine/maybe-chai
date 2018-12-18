@@ -1,6 +1,6 @@
 {
   "name": "maybe-chai",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Chai plugin for assertions with Maybe monads",
   "repository": "kwirke/maybe-chai",
   "author": "Kwirke",
