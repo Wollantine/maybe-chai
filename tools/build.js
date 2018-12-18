@@ -26,7 +26,7 @@ promise = promise.then(() => del(['dist/*']));
 ['es', 'cjs', 'umd'].forEach((format) => {
   promise = promise.then(() => rollup.rollup({
     input: 'src/index.js',
-    external: Object.keys(pkg.dependencies),
+    external: Object.keys(pkg.dependencies || {}),
     plugins: [
       resolve(),
       babel(Object.assign(pkg.babel, {
