@@ -82,6 +82,7 @@ most popular monad libraries in Javascript:
 - [ ] TSMonad
 - [ ] Folktale
 - [ ] Monet
+- [ ] Funfix
 - [ ] Crocks
 - [ ] KudoJS
 - [ ] Purify
