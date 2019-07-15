@@ -110,5 +110,13 @@ describe( 'Sanctuary', () => {
         const assertion = () => expect(S.Just ({status: 200})).to.be.a.just().and.to.have.property('status', 400)
         expect(assertion).to.throw()
     } )
+
+    it( 'should deep equal the contents of a just for arrays', () => {
+        expect(S.Just ([])).to.be.just([])
+    } )
+
+    it( 'should deep equal the contents of a just for objects', () => {
+        expect(S.Just ({a: [1, {x: 2}], b: true})).to.be.just({a: [1, {x: 2}], b: true})
+    } )
 } )
 /* eslint-enable */

@@ -1,6 +1,6 @@
 {
   "name": "maybe-chai",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Chai plugin for assertions with Maybe monads",
   "repository": "kwirke/maybe-chai",
   "author": "Kwirke",
@@ -39,13 +39,12 @@
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",
     "del": "^2.2.2",
-    "easystatic": "^0.1.12",
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.2.0",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^5.2.0",
-    "nyc": "^13.1.0",
+    "nyc": "^14.1.1",
     "rollup": "^0.67.3",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.2.0",
@@ -59,17 +58,18 @@
     "lint": "eslint src test tools",
     "test:custom": "mocha --require @babel/register test/custom.test.js",
     "test:true-myth": "mocha --require @babel/register test/true-myth.test.js",
-    "test:sanctuary": "mocha --require @babel/register test/true-myth.test.js",
+    "test:sanctuary": "mocha --require @babel/register test/sanctuary.test.js",
     "test": "npm run test:custom && npm run test:true-myth && npm run test:sanctuary",
     "test:watch": "mocha --require @babel/register --reporter min --watch",
     "test:cover": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "build": "node tools/build",
-    "prepublish": "npm run build",
-    "publish:docs": "easystatic deploy docs --repo kriasoft/babel-starter-kit",
-    "start": "easystatic start docs"
+    "prepublish": "npm run build"
   },
   "engines": {
     "node": ">=8.14.0"
+  },
+  "dependencies": {
+    "deep-eql": "^4.0.0"
   }
 }

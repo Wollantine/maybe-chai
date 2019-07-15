@@ -105,4 +105,12 @@ describe( 'True Myth', () => {
         const assertion = () => expect( Maybe.just( { status: 200 } ) ).to.be.a.just().and.to.have.property( 'status', 400 )
         expect( assertion ).to.throw()
     } )
+
+    it( 'should deep equal the contents of a just for arrays', () => {
+        expect(Maybe.just([])).to.be.just([])
+    } )
+
+    it( 'should deep equal the contents of a just for objects', () => {
+        expect(Maybe.just({a: [1, {x: 2}], b: true})).to.be.just({a: [1, {x: 2}], b: true})
+    } )
 } )

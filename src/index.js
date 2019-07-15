@@ -1,3 +1,5 @@
+import deepEql from 'deep-eql'
+
 function tryCheckOrFalse( isMaybe, obj ) {
     let isAMaybe
     try {
@@ -20,7 +22,7 @@ function maybeToString( maybe, isMaybe, match ) {
     return !isMaybe
         ? '#{this}'
         : tryMatch( match, maybe, {
-            Just: x => `Just(${x})`,
+            Just: x => `Just(${JSON.stringify(x)})`,
             Nothing: () => 'Nothing',
         } )
 }
@@ -56,29 +58,39 @@ function maybeChai( customAdapter ) {
         } )
 
         utils.addMethod( Assertion.prototype, 'just', function justMethod( value ) {
-            const obj = this._obj
-            const isAMaybe = tryCheckOrFalse( isMaybe, obj )
+            const sut = this._obj
+            const isSutAMaybe = tryCheckOrFalse( isMaybe, sut )
 
-            const assertionResult = isAMaybe && match( obj, {
-                Just: content => value === undefined || content === value,
+            const assertionResult = isSutAMaybe && match( sut, {
+                Just: content => value === undefined || deepEql(content, value),
                 Nothing: () => false,
             } )
 
             if (assertionResult) {
-                utils.flag(this, 'object', match( obj, {
+                utils.flag(this, 'object', match( sut, {
                     Just: content => content,
                     Nothing: () => undefined,
                 } ) )
             }
 
+            const assertingOnlyVariant = value === undefined
+            const expected = assertingOnlyVariant ? 'a Just' : `Just(${JSON.stringify(value)})`
+            const actual = maybeToString( sut, isSutAMaybe, match )
+            const actualContent = tryMatch( match, sut, {
+                Just: content => ({ value: content, variant: 'Just' }),
+                Nothing: () => ({ variant: 'Nothing' })
+            } )
+
             this.assert(
                 assertionResult,
-                `expected ${maybeToString( obj, isAMaybe, match )} to be Just(${value})`,
-                `expected ${maybeToString( obj, isAMaybe, match )} to not be Just(${value})`,
-                value === undefined
-                    ? 'Just()'
+                `expected ${actual} to be ${expected}`,
+                `expected ${actual} to not be ${expected}`,
+                assertingOnlyVariant
+                    ? { variant: 'Just' }
                     : { value, variant: 'Just' },
-                obj,
+                isSutAMaybe
+                    ? assertingOnlyVariant ? { variant: 'Nothing' } : actualContent
+                    : sut,
             )
         } )
     }
